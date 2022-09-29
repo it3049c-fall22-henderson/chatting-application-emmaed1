@@ -92,9 +92,12 @@ saveButton.onclick = function() {
         document.getElementById('my-message').disabled = true;
     }else{
         document.getElementById("my-message").disabled = false;
+        document.getElementById("my-name-input").disabled = true;
     }
 }
 editButton.onclick = function(){
-    const names = localStorage.getItem("my-name-input");
-    nameInput.value = names;
+    document.getElementById("my-message").disabled = true;
+    document.getElementById("my-name-input").disabled = false;
+    const diffname = localStorage.getItem("my-name-input");
+    nameInput.value = diffname;
 }
