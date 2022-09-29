@@ -3,8 +3,14 @@ const nameInput = document.getElementById("my-name-input");
 const myMessage = document.getElementById("my-message");
 const sendButton = document.getElementById("send-button");
 const chatBox = document.getElementById("chat");
+const saveButton = document.getElementById("save-button")
+const editButton = document.getElementById("edit-button")
 const serverURL = `https://it3049c-chat-application.herokuapp.com/messages`;
 
+function DarkMode(){
+    document.body.classList.toggle("dark-mode");
+    localStorage.darkMode = true;
+}
 updateMessages()
 const MILLISECONDS_IN_TEN_SECONDS = 10000;
 setInterval(updateMessages, MILLISECONDS_IN_TEN_SECONDS);
@@ -79,3 +85,16 @@ sendButton.addEventListener("click", function(sendButtonClickEvent) {
   sendMessages(sender,message);
   myMessage.value = "";
 });
+localStorage.getItem("my-name-input");
+saveButton.onclick = function() {  
+    localStorage.setItem('my-name-input', nameInput.value);
+    if(localStorage.getItem('my-name-input') < 1){
+        document.getElementById('my-message').disabled = true;
+    }else{
+        document.getElementById("my-message").disabled = false;
+    }
+}
+editButton.onclick = function(){
+    const names = localStorage.getItem("my-name-input");
+    nameInput.value = names;
+}
